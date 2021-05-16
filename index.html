@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+          <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+          <div id="progress"></div>
+          <div id="gallery">
+                    <img src="https://preload-images.s3.us-east-2.amazonaws.com/engjell-gjepali-M0OIyN5u8ZM-unsplash.jpg" alt="">
+          </div>
+          
+          <script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
+
+          <script>
+                    const progress = document.getElementById('progress')
+                    const gallery = document.getElementById('galary')
+
+                    var queue = new createjs.LoadQueue(true);
+
+                    queue.on('progress',event=>{
+                              console.log(event)
+                              
+                              let progress = Math.floor(event.progress * 100)
+                              this.progress.style.width = progress + '%'
+                              document.getElementById('gallery').style.opacity = '0'
+                              if(progress===100){
+                                        console.log('completed')
+                                        document.querySelector('body').style.background = 'white'
+                                        document.getElementById('progress').style.display = 'none'
+                                        document.getElementById('gallery').style.opacity = '0'
+                                        document.getElementById('gallery').style.transition = '2s'
+                                        document.getElementById('gallery').style.opacity = '1'
+                              }
+                    })
+
+
+                    queue.on('complete',event=>{
+                              console.log(event)
+                              // progress.classList.add('fadeout')
+
+                              gallery.classList.add('fadeIn')
+                            
+                    })
+
+
+
+
+
+                    queue.on('fileload', handleFileComplete)
+                    //images
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/kristaps-ungurs-DJZSUHyS0vk-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/canmandawe-FHes9gu4rBQ-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/engjell-gjepali-M0OIyN5u8ZM-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/jake-buonemani-dQ4fG8ceLJE-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/kristaps-ungurs-DJZSUHyS0vk-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/canmandawe-FHes9gu4rBQ-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/engjell-gjepali-M0OIyN5u8ZM-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/jake-buonemani-dQ4fG8ceLJE-unsplash.jpg')
+
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/kristaps-ungurs-DJZSUHyS0vk-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/canmandawe-FHes9gu4rBQ-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/engjell-gjepali-M0OIyN5u8ZM-unsplash.jpg')
+                    queue.loadFile('https://preload-images.s3.us-east-2.amazonaws.com/jake-buonemani-dQ4fG8ceLJE-unsplash.jpg')
+
+                    
+
+                    function handleFileComplete(event){
+                              var item = event.item
+                              var type = item.type
+
+                              if(type == createjs.Types.IMAGE){
+                                        gallery.appendChild(event.result)
+                              }
+                    }
+          </script>
+</body>
+</html>

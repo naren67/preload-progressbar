@@ -1,0 +1,50 @@
+*{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+}
+
+body{
+          background: black;
+          transition: background 1.5s ease;
+          overflow-y: hidden;
+}
+
+#progress{
+          height: 2px;
+          background: rgb(255, 255, 255);
+          position: absolute;
+          top: 50%;
+          z-index: 5;
+          opacity: 1;
+          transition: width 0.1s ease;
+}
+
+#gallery{
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(1, 50%);
+          grid-gap: 5em;
+          height: 100vh;
+          justify-content: center;
+          align-items: center;
+          transform: scale(0.8);
+}
+
+img{
+          width: 100%;
+          cursor: pointer;
+}
+
+/* from to method */
+
+.fadeIn{
+          transform: scale(1) !important;
+          opacity: 1 !important;
+          transition: all 1s;
+}
+
+/* .fadeOut{
+          opacity: 0 !important;
+          transition: opacity 2s !important;
+} */
